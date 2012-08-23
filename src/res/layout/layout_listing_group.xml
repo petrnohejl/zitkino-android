@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:focusable="false"
+	android:focusableInTouchMode="false"
+	android:background="@drawable/selector_widget_listview_group_bg">
+	
+    <TextView
+		android:id="@+id/layout_listing_group_title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:padding="@dimen/layout_listing_group_padding"
+		android:layout_marginLeft="@dimen/layout_listing_group_margin_left"
+		android:textColor="@color/layout_listing_group_text"
+		android:textSize="@dimen/layout_listing_group_text" />
+    
+</LinearLayout>

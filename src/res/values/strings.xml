@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Žít Kino Brno</string>
+    
+    <string name="global_button_ok">Ok</string>
+    
+    <string name="ab_button_refresh">Obnovit</string>
+    <string name="ab_button_help">O aplikaci</string>
+    <string name="ab_button_list">Seznam</string>
+    <string name="ab_button_list_expand">Rozbalit seznam</string>
+    <string name="ab_button_list_collapse">Zabalit seznam</string>
+    
+    <string name="layout_listing_empty">Žádné filmy nejsou dostupné.</string>
+    <string name="layout_listing_offline">Zařízení je offline. Připojte se prosím k internetu a zmáčkněte tlačítko obnovit.</string>
+    <string name="layout_listing_show">se vysílá</string>
+    <string name="layout_listing_in_cinema">v kině</string>
+    <string name="layout_listing_share_subject">Žít Kino Brno</string>
+    <string name="layout_listing_share">Sdílet</string>
+    
+    <string name="layout_listing_about_title">O aplikaci</string>
+    <string name="layout_listing_about_text">Žít Kino Brno\n© 2012 Petr Nohejl, petrnohejl.cz\n\nAplikace vychází z webové služby zitkino.cz. API poskytnul Honza Javorek. Provozovatel neručí za případné škody vzniklé užíváním této aplikace.</string>
+</resources>

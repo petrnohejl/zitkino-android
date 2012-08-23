@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- Zitkino theme -->
+	<!-- Android Action Bar Style Generator: http://jgilfelt.github.com/android-actionbarstylegenerator -->
+	
+	<style name="Theme.Zitkino" parent="Theme.Sherlock.Light">
+		<!-- action bar icon -->
+		<item name="icon">@drawable/ic_launcher</item>
+		<item name="android:icon">@drawable/ic_launcher</item>
+		
+		<!-- action bar logo -->
+		<item name="logo">@drawable/ab_logo</item>
+		<item name="android:logo">@drawable/ab_logo</item>
+		
+		<!-- action bar divider -->
+		<item name="actionBarDivider">@drawable/ab_divider</item>
+		<item name="android:actionBarDivider">@drawable/ab_divider</item>
+
+		<!-- action bar button text color -->
+		<item name="actionMenuTextColor">@color/ab_button_text</item>
+		<item name="android:actionMenuTextColor">@color/ab_button_text</item>
+
+		<!-- action bar button background drawable -->
+		<item name="actionBarItemBackground">@drawable/selector_ab_button_bg</item>
+		<item name="android:actionBarItemBackground">@drawable/selector_ab_button_bg</item>
+
+		<!-- action bar popup menu item background drawable -->
+		<item name="itemBackground">@drawable/selector_ab_button_bg</item>
+		<item name="android:itemBackground">@drawable/selector_ab_button_bg</item>
+
+		<!-- action bar action mode background drawable -->
+		<item name="actionModeBackground">@drawable/ab_bg_mode</item>
+		<item name="android:actionModeBackground">@drawable/ab_bg_mode</item>
+
+		<!-- action bar menu hardkey panel background drawable -->
+		<item name="android:panelBackground">@drawable/ab_popup_bottom_bg</item>
+		
+		<!-- action bar list choice checkbox and radio -->
+		<!-- 
+		<item name="android:listChoiceIndicatorMultiple">@drawable/selector_ab_checkbox_bg</item>
+		<item name="android:listChoiceIndicatorSingle">@drawable/selector_ab_radio_bg</item>
+		-->
+		
+		<!-- action bar style -->
+		<item name="actionBarStyle">@style/Zitkino.ActionBar</item>
+		<item name="android:actionBarStyle">@style/Zitkino.ActionBar</item>
+		
+		<!-- action bar button text style -->
+		<item name="actionMenuTextAppearance">@style/Zitkino.ActionBar.ActionMenuTextAppearance</item>
+		<item name="android:actionMenuTextAppearance">@style/Zitkino.ActionBar.ActionMenuTextAppearance</item>
+		
+		<!-- action bar popup menu background style -->
+		<item name="popupMenuStyle">@style/Zitkino.ActionBar.PopupMenu</item>
+		<item name="android:popupMenuStyle">@style/Zitkino.ActionBar.PopupMenu</item>
+		
+		<!-- action bar popup menu item background style -->
+		<item name="dropDownListViewStyle">@style/Zitkino.ActionBar.DropDownListView</item>
+		<item name="android:dropDownListViewStyle">@style/Zitkino.ActionBar.DropDownListView</item>
+		
+		<!-- action bar list navigation dropdown style -->
+		<item name="actionDropDownStyle">@style/Zitkino.ActionBar.ActionDropDown</item>
+		<item name="android:actionDropDownStyle">@style/Zitkino.ActionBar.ActionDropDown</item>
+		
+		<!-- action bar tab style -->
+		<item name="actionBarTabStyle">@style/Zitkino.ActionBar.Tab</item>
+		<item name="android:actionBarTabStyle">@style/Zitkino.ActionBar.Tab</item>
+		
+		<!-- action bar tab text style -->
+		<item name="actionBarTabTextStyle">@style/Zitkino.ActionBar.TabText</item>
+		<item name="android:actionBarTabTextStyle">@style/Zitkino.ActionBar.TabText</item>
+		
+		<!-- widget styles -->
+		<item name="android:textViewStyle">@style/Zitkino.TextView</item>
+		<item name="android:buttonStyle">@style/Zitkino.Button</item>
+		<item name="android:editTextStyle">@style/Zitkino.EditText</item>
+		<item name="android:checkboxStyle">@style/Zitkino.CheckBox</item>
+	</style>
+	
+	
+	<!-- action bar style -->
+	<style name="Zitkino.ActionBar" parent="Widget.Sherlock.Light.ActionBar">
+		<!-- action bar background -->
+		<item name="background">@drawable/ab_bg_default</item>
+		<item name="android:background">@drawable/ab_bg_default</item>
+		
+		<!-- stacked action bar background -->
+		<item name="backgroundStacked">@drawable/ab_bg_stacked</item>
+		<item name="android:backgroundStacked">@drawable/ab_bg_stacked</item>
+		
+		<!-- split action bar background -->
+		<item name="backgroundSplit">@drawable/ab_bg_split</item>
+		<item name="android:backgroundSplit">@drawable/ab_bg_split</item>
+		
+		<!-- action bar title style -->
+		<item name="titleTextStyle">@style/Zitkino.ActionBar.TitleText</item>
+		<item name="android:titleTextStyle">@style/Zitkino.ActionBar.TitleText</item>
+		
+		<!-- action bar progress bar style -->
+		<item name="progressBarStyle">@style/Zitkino.ActionBar.ProgressBar</item>
+		<item name="android:progressBarStyle">@style/Zitkino.ActionBar.ProgressBar</item>
+
+		<!-- action bar indeterminate progress bar style -->
+		<item name="indeterminateProgressStyle">@android:style/Widget.ProgressBar.Small.Inverse</item>
+		<item name="android:indeterminateProgressStyle">@android:style/Widget.ProgressBar.Small.Inverse</item>
+	</style>
+	
+	
+	<!-- action bar title style -->
+	<style name="Zitkino.ActionBar.TitleText" parent="@android:style/TextAppearance">
+		<item name="android:textSize">@dimen/ab_title_text</item>
+		<item name="android:textColor">@color/ab_title_text</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+
+
+	<!-- action bar progress bar style -->
+	<style name="Zitkino.ActionBar.ProgressBar" parent="@style/Widget.Sherlock.Light.ProgressBar.Horizontal">
+		<item name="android:progressDrawable">@drawable/layer_list_ab_progressbar_horizontal</item>
+	</style>
+	
+	
+	<!-- action bar button text style -->
+	<style name="Zitkino.ActionBar.ActionMenuTextAppearance" parent="TextAppearance.Sherlock.Widget.ActionBar.Menu">
+		<item name="android:textSize">@dimen/ab_button_text</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+	
+	
+	<!-- action bar popup menu background style -->
+	<style name="Zitkino.ActionBar.PopupMenu" parent="Widget.Sherlock.Light.PopupMenu"> <!-- Widget.Sherlock.Light.ListPopupWindow -->
+		<item name="android:popupBackground">@drawable/ab_popup_bg</item>
+	</style>
+	
+	
+	<!-- action bar popup menu item background style -->
+	<style name="Zitkino.ActionBar.DropDownListView" parent="Widget.Sherlock.Light.ListView.DropDown">
+		<item name="android:listSelector">@drawable/selector_ab_button_bg</item>
+	</style>
+	
+	
+	<!-- action bar list navigation dropdown style -->
+	<style name="Zitkino.ActionBar.ActionDropDown" parent="Widget.Sherlock.Light.Spinner.DropDown.ActionBar">
+		<item name="background">@drawable/selector_ab_dropdown_bg</item>
+		<item name="android:background">@drawable/selector_ab_dropdown_bg</item>
+		<item name="android:popupBackground">@drawable/ab_popup_bg</item>
+		<item name="android:dropDownSelector">@drawable/selector_ab_button_bg</item>
+	</style>
+	
+	
+	<!-- action bar tab style -->
+	<style name="Zitkino.ActionBar.Tab" parent="Widget.Sherlock.Light.ActionBar.TabBar"> <!-- Widget.Sherlock.Light.ActionBar.TabView -->
+		<item name="background">@drawable/selector_ab_tab_bg</item>
+		<item name="android:background">@drawable/selector_ab_tab_bg</item>
+		<item name="android:paddingLeft">@dimen/ab_tab_padding</item>
+		<item name="android:paddingRight">@dimen/ab_tab_padding</item>
+		<item name="android:gravity">center</item>
+	</style>
+	
+	
+	<!-- action bar tab text style -->
+	<style name="Zitkino.ActionBar.TabText" parent="Widget.Sherlock.ActionBar.TabText">
+		<item name="android:textSize">@dimen/ab_tab_text</item>
+		<item name="android:textColor">@color/ab_tab_text</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+	
+	
+	<!-- widget textview -->
+	<style name="Zitkino.TextView" parent="@android:style/Widget.TextView">
+		<item name="android:textSize">@dimen/widget_textview_text</item>
+		<item name="android:textColor">@color/widget_textview_text</item>
+	</style>
+	
+	
+	<!-- widget button -->
+	<style name="Zitkino.Button" parent="@android:style/Widget.Button">
+		<item name="android:textSize">@dimen/widget_button_text</item>
+		<item name="android:textColor">@color/widget_button_text</item>
+	</style>
+	
+	
+	<!-- widget edittext -->
+	<style name="Zitkino.EditText" parent="@android:style/Widget.EditText">
+		<item name="android:textSize">@dimen/widget_edittext_text</item>
+		<item name="android:textColor">@color/widget_edittext_text</item>
+		<item name="android:textColorHint">@color/widget_edittext_hint_text</item>
+	</style>
+	
+	
+	<!-- widget checkbox -->
+	<style name="Zitkino.CheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+		<item name="android:textSize">@dimen/widget_checkbox_text</item>
+		<item name="android:textColor">@color/widget_checkbox_text</item>
+	</style>
+</resources>
