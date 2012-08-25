@@ -10,7 +10,6 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import cz.petrnohejl.zitkino.R;
 import cz.petrnohejl.zitkino.client.entity.Movie;
-import cz.petrnohejl.zitkino.utility.DateConvertor;
 import cz.petrnohejl.zitkino.utility.StringConvertor;
 
 public class ListingAdapter extends BaseExpandableListAdapter 
@@ -70,14 +69,7 @@ public class ListingAdapter extends BaseExpandableListAdapter
 			
 			// content
 			holder.textViewTitle.setText(StringConvertor.capitalize(movie.getTitle()));
-			
-			StringBuilder builder = new StringBuilder();
-			builder.append(DateConvertor.dateToString(movie.getDate(), "dd.MM.yyyy"));
-			builder.append(" ");
-			builder.append(mContext.getString(R.string.layout_listing_in_cinema));
-			builder.append(" ");
-			builder.append(movie.getCinema());
-			holder.textViewDescription.setText(builder.toString());
+			holder.textViewDescription.setText(movie.getCinema());
 		}
 		
 		return view;
