@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.adapters;
+package cz.petrnohejl.zitkino.adapter;
 
 import java.util.ArrayList;
 

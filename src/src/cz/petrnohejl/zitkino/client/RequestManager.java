@@ -34,6 +34,20 @@ public class RequestManager
 	}
 	
 	
+	public boolean hasRunningRequest(Class<?> cls)
+	{
+		String className = cls.getSimpleName();
+		
+		for(ApiCall call : mQueue)
+		{
+			String callName = call.getRequest().getClass().getSimpleName();
+			if(className.equals(callName)) return true;
+		}
+		
+		return false;
+	}
+	
+	
 	public void cancelAllRequests()
 	{
 		for(int i=mQueue.size()-1;i>=0;i--)
@@ -52,7 +66,7 @@ public class RequestManager
 	{
 		for(ApiCall call : mQueue)
 		{
-			Log.d("EXAMPLE", "request in queue: " + (call==null ? "null" : (call.getRequest().getClass().getSimpleName() + ": " + call.getStatus().toString())));
+			Log.d("ZITKINO", "request in queue: " + (call==null ? "null" : (call.getRequest().getClass().getSimpleName() + ": " + call.getStatus().toString())));
 		}
 		
 		if(mQueue.isEmpty()) Log.d("ZITKINO", "request in queue: empty");
@@ -64,6 +78,6 @@ public class RequestManager
 		// needs android.permission.ACCESS_NETWORK_STATE
 		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-		return (netInfo != null && netInfo.isConnected());
+		return (netInfo != null && netInfo.isAvailable() && netInfo.isConnected());
 	}
 }

@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.activities;
+package cz.petrnohejl.zitkino.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,7 +17,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 
 import cz.petrnohejl.zitkino.R;
-import cz.petrnohejl.zitkino.fragments.ListingFragment;
+import cz.petrnohejl.zitkino.fragment.ListingFragment;
 
 public class ListingActivity extends SherlockFragmentActivity
 {

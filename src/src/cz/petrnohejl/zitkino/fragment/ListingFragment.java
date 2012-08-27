@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.fragments;
+package cz.petrnohejl.zitkino.fragment;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,13 +17,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import cz.petrnohejl.zitkino.R;
-import cz.petrnohejl.zitkino.adapters.ListingAdapter;
+import cz.petrnohejl.zitkino.adapter.ListingAdapter;
 import cz.petrnohejl.zitkino.client.ApiCall;
 import cz.petrnohejl.zitkino.client.OnApiCallListener;
 import cz.petrnohejl.zitkino.client.RequestManager;
@@ -32,11 +31,15 @@ import cz.petrnohejl.zitkino.client.entity.Movie;
 import cz.petrnohejl.zitkino.client.request.MovieRequest;
 import cz.petrnohejl.zitkino.client.response.MovieResponse;
 import cz.petrnohejl.zitkino.client.response.Response;
+import cz.petrnohejl.zitkino.task.TaskSherlockFragment;
 import cz.petrnohejl.zitkino.utility.DateConvertor;
+import cz.petrnohejl.zitkino.utility.ViewState;
 
-public class ListingFragment extends SherlockFragment implements OnApiCallListener
+
+public class ListingFragment extends TaskSherlockFragment implements OnApiCallListener
 {
 	private View mRootView;
+	private ViewState.Visibility mViewState = null;
 	private ListingAdapter mAdapter;
 	private RequestManager mRequestManager = new RequestManager();
 	
@@ -57,6 +60,7 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 		super.onCreate(savedInstanceState);
 		
 		setHasOptionsMenu(true);
+		setRetainInstance(true);
 		
 		// restore saved state
 		if(savedInstanceState != null)
@@ -85,15 +89,27 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 	public void onActivityCreated(Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		
+				
 		// load and show data
-		if(RequestManager.isOnline(getActivity()))
+		if(mViewState==null || mViewState==ViewState.Visibility.OFFLINE)
 		{
-			loadData();
+			if(RequestManager.isOnline(getActivity()))
+			{
+				loadData();
+			}
+			else
+			{
+				showOffline();
+			}
 		}
-		else
+		else if(mViewState==ViewState.Visibility.CONTENT)
 		{
-			showOffline();
+			renderView();
+			showList();
+		}
+		else if(mViewState==ViewState.Visibility.PROGRESS)
+		{
+			showProgress();
 		}
 	}
 	
@@ -115,13 +131,10 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 	@Override
 	public void onPause()
 	{
-		// cancel async tasks
-		mRequestManager.cancelAllRequests();
+		super.onPause();
 		
 		// stop adapter
 		if(mAdapter!=null) mAdapter.stop();
-		
-		super.onPause();
 	}
 	
 	
@@ -143,6 +156,9 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 	public void onDestroy()
 	{
 		super.onDestroy();
+		
+		// cancel async tasks
+		mRequestManager.cancelAllRequests();
 	}
 	
 	
@@ -195,85 +211,95 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 	
 	
 	@Override
-	public void onApiCallRespond(ApiCall call, ResponseStatus status, Response response)
+	public void onApiCallRespond(final ApiCall call, final ResponseStatus status, final Response response)
 	{
-		if(response.getClass().getSimpleName().equalsIgnoreCase("MovieResponse"))
+		runTaskCallback(new Runnable()
 		{
-			MovieResponse movieResponse = (MovieResponse) response;
-			
-			// error
-			if(movieResponse.isError())
+			public void run()
 			{
-//				Log.d("ZITKINO", "onApiCallRespond: movie response error");
-//				Log.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
-//				Log.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
-//				Log.d("ZITKINO", "onApiCallRespond error: " + movieResponse.getErrorType() + ": " + movieResponse.getErrorMessage());
-			}
-			
-			// response
-			else
-			{
-//				Log.d("ZITKINO", "onApiCallRespond: movie response ok");
-//				Log.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
-//				Log.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
-				
-				// data movies
-				Iterator<ArrayList<Movie>> iterator1 = movieResponse.getMovies().iterator();
-				while(iterator1.hasNext())
+				if(response.getClass().getSimpleName().equalsIgnoreCase("MovieResponse"))
 				{
-					ArrayList<Movie> currentGroup = iterator1.next();
-					ArrayList<Movie> newGroup = new ArrayList<Movie>();
+					MovieResponse movieResponse = (MovieResponse) response;
 					
-					Iterator<Movie> iterator2 = currentGroup.iterator();
-					while(iterator2.hasNext())
+					// error
+					if(movieResponse.isError())
 					{
-						Movie movie = iterator2.next();
-						newGroup.add(new Movie(movie));
+//						Log.d("ZITKINO", "onApiCallRespond: movie response error");
+//						Log.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
+//						Log.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
+//						Log.d("ZITKINO", "onApiCallRespond error: " + movieResponse.getErrorType() + ": " + movieResponse.getErrorMessage());
 					}
 					
-					mMovies.add(newGroup);
-				}
-				
-				// data groups
-				Iterator<String> iterator3 = movieResponse.getGroups().iterator();
-				while(iterator3.hasNext())
-				{
-					String group = iterator3.next();
-					mGroups.add(new String(group));
-				}
-
-				// show list container
-				showList();
-				
-				// render or refresh view
-				if(mAdapter==null) renderView();
-				else mAdapter.notifyDataSetChanged();
-			}
-		}
+					// response
+					else
+					{
+//						Log.d("ZITKINO", "onApiCallRespond: movie response ok");
+//						Log.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
+//						Log.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
+						
+						// data movies
+						Iterator<ArrayList<Movie>> iterator1 = movieResponse.getMovies().iterator();
+						while(iterator1.hasNext())
+						{
+							ArrayList<Movie> currentGroup = iterator1.next();
+							ArrayList<Movie> newGroup = new ArrayList<Movie>();
+							
+							Iterator<Movie> iterator2 = currentGroup.iterator();
+							while(iterator2.hasNext())
+							{
+								Movie movie = iterator2.next();
+								newGroup.add(new Movie(movie));
+							}
+							
+							mMovies.add(newGroup);
+						}
+						
+						// data groups
+						Iterator<String> iterator3 = movieResponse.getGroups().iterator();
+						while(iterator3.hasNext())
+						{
+							String group = iterator3.next();
+							mGroups.add(new String(group));
+						}
 		
-		mRequestManager.finishRequest(call);
+						// show list container
+						showList();
+						
+						// render view
+						renderView();
+					}
+				}
+				
+				mRequestManager.finishRequest(call);
+			}
+		});
 	}
 
 
 	@Override
-	public void onApiCallFail(ApiCall call, ResponseStatus status, boolean parseFail)
+	public void onApiCallFail(final ApiCall call, final ResponseStatus status, final boolean parseFail)
 	{
-		if(call.getRequest().getClass().getSimpleName().equalsIgnoreCase("MovieRequest"))
+		runTaskCallback(new Runnable()
 		{
-//			Log.d("ZITKINO", "onApiCallFail: movie request fail");
-//			Log.d("ZITKINO", "onApiCallFail status code: " + status.getStatusCode());
-//			Log.d("ZITKINO", "onApiCallFail status message: " + status.getStatusMessage());
-//			Log.d("ZITKINO", "onApiCallFail parse fail: " + parseFail);
-			
-			// show list container
-			showList();
-			
-			// render or refresh view
-			if(mAdapter==null) renderView();
-			else mAdapter.notifyDataSetChanged();
-		}
-		
-		mRequestManager.finishRequest(call);
+			public void run()
+			{
+				if(call.getRequest().getClass().getSimpleName().equalsIgnoreCase("MovieRequest"))
+				{
+//					Log.d("ZITKINO", "onApiCallFail: movie request fail");
+//					Log.d("ZITKINO", "onApiCallFail status code: " + status.getStatusCode());
+//					Log.d("ZITKINO", "onApiCallFail status message: " + status.getStatusMessage());
+//					Log.d("ZITKINO", "onApiCallFail parse fail: " + parseFail);
+					
+					// show list container
+					showList();
+					
+					// render view
+					renderView();
+				}
+				
+				mRequestManager.finishRequest(call);
+			}
+		});
 	}
 	
 	
@@ -291,11 +317,14 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 	
 	private void loadData()
 	{
-		showProgress();
-		
-		// movie request with paging
-		MovieRequest request = new MovieRequest();
-		mRequestManager.executeRequest(request, this);
+		if(!mRequestManager.hasRunningRequest(MovieRequest.class))
+		{
+			showProgress();
+			
+			// movie request with paging
+			MovieRequest request = new MovieRequest();
+			mRequestManager.executeRequest(request, this);
+		}
 	}
 	
 	
@@ -308,6 +337,7 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 		containerList.setVisibility(View.VISIBLE);
 		containerProgress.setVisibility(View.GONE);
 		containerOffline.setVisibility(View.GONE);
+		mViewState = ViewState.Visibility.CONTENT;
 	}
 	
 	
@@ -320,6 +350,7 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 		containerList.setVisibility(View.GONE);
 		containerProgress.setVisibility(View.VISIBLE);
 		containerOffline.setVisibility(View.GONE);
+		mViewState = ViewState.Visibility.PROGRESS;
 	}
 	
 	
@@ -332,6 +363,7 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 		containerList.setVisibility(View.GONE);
 		containerProgress.setVisibility(View.GONE);
 		containerOffline.setVisibility(View.VISIBLE);
+		mViewState = ViewState.Visibility.OFFLINE;
 	}
 	
 	
@@ -355,7 +387,11 @@ public class ListingFragment extends SherlockFragment implements OnApiCallListen
 		}
 		else
 		{
+			// refill adapter
 			mAdapter.refill(getActivity(), mGroups, mMovies);
+			
+			// set adapter
+			listView.setAdapter(mAdapter);
 		}
 		
 		// listview item onclick

@@ -7,7 +7,7 @@
 	
 	<fragment
 		android:id="@+id/fragment_listing"
-		android:name="cz.petrnohejl.zitkino.fragments.ListingFragment"
+		android:name="cz.petrnohejl.zitkino.fragment.ListingFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_weight="1" />
