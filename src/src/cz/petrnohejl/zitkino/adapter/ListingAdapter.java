@@ -79,7 +79,8 @@ public class ListingAdapter extends BaseExpandableListAdapter
 	@Override
 	public int getChildrenCount(int groupPosition) 
 	{
-        return mMovies.get(groupPosition).size();
+		if(mMovies!=null) return mMovies.get(groupPosition).size();
+		else return 0;
     }
 
 
@@ -93,7 +94,8 @@ public class ListingAdapter extends BaseExpandableListAdapter
 	@Override
 	public int getGroupCount()
 	{
-        return mGroups.size();
+		if(mGroups!=null) return mGroups.size();
+		else return 0;
     }
 
 

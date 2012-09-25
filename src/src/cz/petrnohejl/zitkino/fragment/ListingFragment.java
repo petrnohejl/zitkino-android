@@ -104,7 +104,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 		}
 		else if(mViewState==ViewState.Visibility.CONTENT)
 		{
-			renderView();
+			if(mGroups!=null && mMovies!=null) renderView();
 			showList();
 		}
 		else if(mViewState==ViewState.Visibility.PROGRESS)
@@ -266,7 +266,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 						showList();
 						
 						// render view
-						renderView();
+						if(mGroups!=null && mMovies!=null) renderView();
 					}
 				}
 				
@@ -292,9 +292,6 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 					
 					// show list container
 					showList();
-					
-					// render view
-					renderView();
 				}
 				
 				mRequestManager.finishRequest(call);
