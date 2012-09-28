@@ -34,6 +34,12 @@ public class RequestManager
 	}
 	
 	
+	public int getRequestsCount()
+	{
+		return mQueue.size();
+	}
+	
+	
 	public boolean hasRunningRequest(Class<?> cls)
 	{
 		String className = cls.getSimpleName();

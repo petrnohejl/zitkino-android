@@ -93,14 +93,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 		// load and show data
 		if(mViewState==null || mViewState==ViewState.Visibility.OFFLINE)
 		{
-			if(RequestManager.isOnline(getActivity()))
-			{
-				loadData();
-			}
-			else
-			{
-				showOffline();
-			}
+			loadData();
 		}
 		else if(mViewState==ViewState.Visibility.CONTENT)
 		{
@@ -224,20 +217,25 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 					// error
 					if(movieResponse.isError())
 					{
-//						Log.d("ZITKINO", "onApiCallRespond: movie response error");
+//						Log.d("ZITKINO", "onApiCallRespond: movie error " + movieResponse.getErrorType() + ": " + movieResponse.getErrorMessage());
 //						Log.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
 //						Log.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
-//						Log.d("ZITKINO", "onApiCallRespond error: " + movieResponse.getErrorType() + ": " + movieResponse.getErrorMessage());
+						
+						// hide progress
+						showList();
+
+						// handle error
+						handleError(movieResponse.getErrorType(), movieResponse.getErrorMessage());
 					}
 					
 					// response
 					else
 					{
-//						Log.d("ZITKINO", "onApiCallRespond: movie response ok");
+//						Log.d("ZITKINO", "onApiCallRespond: movie ok");
 //						Log.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
 //						Log.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
 						
-						// data movies
+						// get movies data
 						Iterator<ArrayList<Movie>> iterator1 = movieResponse.getMovies().iterator();
 						while(iterator1.hasNext())
 						{
@@ -254,23 +252,27 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 							mMovies.add(newGroup);
 						}
 						
-						// data groups
+						// get groups data
 						Iterator<String> iterator3 = movieResponse.getGroups().iterator();
 						while(iterator3.hasNext())
 						{
 							String group = iterator3.next();
 							mGroups.add(new String(group));
 						}
-		
-						// show list container
-						showList();
-						
+
 						// render view
 						if(mGroups!=null && mMovies!=null) renderView();
+						
+						// hide progress
+						showList();
 					}
 				}
 				
+				// finish request
 				mRequestManager.finishRequest(call);
+
+				// hide progress in action bar
+				if(mRequestManager.getRequestsCount()==0) getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);
 			}
 		});
 	}
@@ -285,18 +287,36 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 			{
 				if(call.getRequest().getClass().getSimpleName().equalsIgnoreCase("MovieRequest"))
 				{
-//					Log.d("ZITKINO", "onApiCallFail: movie request fail");
+//					Log.d("ZITKINO", "onApiCallFail: movie " + parseFail);
 //					Log.d("ZITKINO", "onApiCallFail status code: " + status.getStatusCode());
-//					Log.d("ZITKINO", "onApiCallFail status message: " + status.getStatusMessage());
-//					Log.d("ZITKINO", "onApiCallFail parse fail: " + parseFail);
+//					Log.d("ZITKINO", "onApiCallFail status message: " + status.getStatusMessage());		
 					
-					// show list container
+					// hide progress
 					showList();
+
+					// handle fail
+					handleFail();
 				}
 				
+				// finish request
 				mRequestManager.finishRequest(call);
+
+				// hide progress in action bar
+				if(mRequestManager.getRequestsCount()==0) getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);
 			}
 		});
+	}
+	
+	
+	private void handleError(String errorType, String errorMessage)
+	{
+		Toast.makeText(getActivity(), R.string.global_server_fail, Toast.LENGTH_LONG).show();
+	}
+
+
+	private void handleFail()
+	{
+		Toast.makeText(getActivity(), R.string.global_server_fail, Toast.LENGTH_LONG).show();
 	}
 	
 	
@@ -314,13 +334,21 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 	
 	private void loadData()
 	{
-		if(!mRequestManager.hasRunningRequest(MovieRequest.class))
+		if(RequestManager.isOnline(getActivity()))
 		{
-			showProgress();
-			
-			// movie request with paging
-			MovieRequest request = new MovieRequest();
-			mRequestManager.executeRequest(request, this);
+			if(!mRequestManager.hasRunningRequest(MovieRequest.class))
+			{
+				// show progress
+				showProgress();
+				
+				// movie request
+				MovieRequest request = new MovieRequest();
+				mRequestManager.executeRequest(request, this);
+			}
+		}
+		else
+		{
+			showOffline();
 		}
 	}
 	
@@ -452,7 +480,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 		}
 		else
 		{
-			Toast.makeText(getActivity(), R.string.layout_listing_offline, Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), R.string.global_offline, Toast.LENGTH_LONG).show();
 		}
 	}
 	

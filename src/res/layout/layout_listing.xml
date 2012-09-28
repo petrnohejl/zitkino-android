@@ -76,7 +76,7 @@
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:padding="@dimen/layout_listing_item_padding"
-			android:text="@string/layout_listing_offline" />
+			android:text="@string/global_offline" />
 	
 	</LinearLayout>
 </FrameLayout>
