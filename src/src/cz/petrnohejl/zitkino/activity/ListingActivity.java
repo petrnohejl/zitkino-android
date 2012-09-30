@@ -132,7 +132,7 @@ public class ListingActivity extends SherlockFragmentActivity
 				
 			case R.id.ab_button_refresh:
 				listingFragment = (ListingFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_listing);
-				if(listingFragment!=null) listingFragment.refresh();
+				if(listingFragment!=null) listingFragment.refreshData();
 				return true;
 				
 			case R.id.ab_button_help:

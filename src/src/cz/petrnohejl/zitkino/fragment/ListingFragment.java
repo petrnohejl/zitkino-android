@@ -355,6 +355,34 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 			showOffline();
 		}
 	}
+
+	
+	public void refreshData()
+	{
+		// load and show data
+		if(RequestManager.isOnline(getActivity()))
+		{
+			clearData();
+			loadData();
+		}
+		else
+		{
+			Toast.makeText(getActivity(), R.string.global_offline, Toast.LENGTH_LONG).show();
+		}
+	}
+	
+	
+	private void clearData()
+	{
+		mGroups.clear();
+		Iterator<ArrayList<Movie>> iterator = mMovies.iterator();
+		while(iterator.hasNext())
+		{
+			ArrayList<Movie> group = iterator.next();
+			group.clear();
+		}
+		mMovies.clear();
+	}
 	
 	
 	private void showActionBarProgress(boolean visible)
@@ -466,34 +494,6 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 		
 		// listview empty view
 		listView.setEmptyView(emptyView);
-	}
-	
-	
-	private void clearData()
-	{
-		mGroups.clear();
-		Iterator<ArrayList<Movie>> iterator = mMovies.iterator();
-		while(iterator.hasNext())
-		{
-			ArrayList<Movie> group = iterator.next();
-			group.clear();
-		}
-		mMovies.clear();
-	}
-	
-	
-	public void refresh()
-	{
-		// load and show data
-		if(RequestManager.isOnline(getActivity()))
-		{
-			clearData();
-			loadData();
-		}
-		else
-		{
-			Toast.makeText(getActivity(), R.string.global_offline, Toast.LENGTH_LONG).show();
-		}
 	}
 	
 	
