@@ -42,6 +42,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 	private ViewState.Visibility mViewState = null;
 	private ListingAdapter mAdapter;
 	private RequestManager mRequestManager = new RequestManager();
+	private boolean mActionBarProgress = false;
 	
 	private ArrayList<String> mGroups = new ArrayList<String>();
 	private ArrayList<ArrayList<Movie>> mMovies = new ArrayList<ArrayList<Movie>>();
@@ -104,6 +105,9 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 		{
 			showProgress();
 		}
+		
+		// progress in action bar
+  		showActionBarProgress(mActionBarProgress);
 	}
 	
 	
@@ -272,7 +276,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 				mRequestManager.finishRequest(call);
 
 				// hide progress in action bar
-				if(mRequestManager.getRequestsCount()==0) getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);
+				if(mRequestManager.getRequestsCount()==0) showActionBarProgress(false);
 			}
 		});
 	}
@@ -302,7 +306,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 				mRequestManager.finishRequest(call);
 
 				// hide progress in action bar
-				if(mRequestManager.getRequestsCount()==0) getSherlockActivity().setSupportProgressBarIndeterminateVisibility(false);
+				if(mRequestManager.getRequestsCount()==0) showActionBarProgress(false);
 			}
 		});
 	}
@@ -350,6 +354,14 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 		{
 			showOffline();
 		}
+	}
+	
+	
+	private void showActionBarProgress(boolean visible)
+	{
+		// show action bar progress
+		getSherlockActivity().setSupportProgressBarIndeterminateVisibility(visible);
+		mActionBarProgress = visible;
 	}
 	
 	
