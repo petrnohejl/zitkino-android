@@ -18,7 +18,7 @@ DO BEFORE UPDATE TO GOOGLE PLAY:
 
 
 RELEASE INFO:
--code:1 - name:1.0 - date:23.08.2012
+-code:1 - name:1.0.0 - date:23.08.2012
 
 
 TODO:
@@ -42,7 +42,7 @@ TESTS:
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="cz.petrnohejl.zitkino"
 	android:versionCode="1"
-	android:versionName="1.0"
+	android:versionName="1.0.0"
 	android:installLocation="auto">
 	
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16" />

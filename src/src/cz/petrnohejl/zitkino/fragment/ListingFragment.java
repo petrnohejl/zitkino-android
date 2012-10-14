@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
@@ -314,13 +312,13 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 	
 	private void handleError(String errorType, String errorMessage)
 	{
-		Toast.makeText(getActivity(), R.string.global_server_fail, Toast.LENGTH_LONG).show();
+		Toast.makeText(getActivity(), R.string.global_server_fail_toast, Toast.LENGTH_LONG).show();
 	}
 
 
 	private void handleFail()
 	{
-		Toast.makeText(getActivity(), R.string.global_server_fail, Toast.LENGTH_LONG).show();
+		Toast.makeText(getActivity(), R.string.global_server_fail_toast, Toast.LENGTH_LONG).show();
 	}
 	
 	
@@ -367,7 +365,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 		}
 		else
 		{
-			Toast.makeText(getActivity(), R.string.global_offline, Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(), R.string.global_offline_toast, Toast.LENGTH_LONG).show();
 		}
 	}
 	
@@ -397,8 +395,8 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 	{
 		// show list container
 		FrameLayout containerList = (FrameLayout) mRootView.findViewById(R.id.container_list);
-		LinearLayout containerProgress = (LinearLayout) mRootView.findViewById(R.id.container_progress);
-		LinearLayout containerOffline = (LinearLayout) mRootView.findViewById(R.id.container_offline);
+		FrameLayout containerProgress = (FrameLayout) mRootView.findViewById(R.id.container_progress);
+		FrameLayout containerOffline = (FrameLayout) mRootView.findViewById(R.id.container_offline);
 		containerList.setVisibility(View.VISIBLE);
 		containerProgress.setVisibility(View.GONE);
 		containerOffline.setVisibility(View.GONE);
@@ -410,8 +408,8 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 	{
 		// show progress container
 		FrameLayout containerList = (FrameLayout) mRootView.findViewById(R.id.container_list);
-		LinearLayout containerProgress = (LinearLayout) mRootView.findViewById(R.id.container_progress);
-		LinearLayout containerOffline = (LinearLayout) mRootView.findViewById(R.id.container_offline);
+		FrameLayout containerProgress = (FrameLayout) mRootView.findViewById(R.id.container_progress);
+		FrameLayout containerOffline = (FrameLayout) mRootView.findViewById(R.id.container_offline);
 		containerList.setVisibility(View.GONE);
 		containerProgress.setVisibility(View.VISIBLE);
 		containerOffline.setVisibility(View.GONE);
@@ -423,8 +421,8 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 	{
 		// show offline container
 		FrameLayout containerList = (FrameLayout) mRootView.findViewById(R.id.container_list);
-		LinearLayout containerProgress = (LinearLayout) mRootView.findViewById(R.id.container_progress);
-		LinearLayout containerOffline = (LinearLayout) mRootView.findViewById(R.id.container_offline);
+		FrameLayout containerProgress = (FrameLayout) mRootView.findViewById(R.id.container_progress);
+		FrameLayout containerOffline = (FrameLayout) mRootView.findViewById(R.id.container_offline);
 		containerList.setVisibility(View.GONE);
 		containerProgress.setVisibility(View.GONE);
 		containerOffline.setVisibility(View.VISIBLE);
@@ -436,7 +434,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 	{
 		// reference
 		ExpandableListView listView = (ExpandableListView) mRootView.findViewById(android.R.id.list);
-		TextView emptyView = (TextView) mRootView.findViewById(android.R.id.empty);
+		FrameLayout emptyView = (FrameLayout) mRootView.findViewById(android.R.id.empty);
 		
 		// listview content
 		if(mAdapter==null)
