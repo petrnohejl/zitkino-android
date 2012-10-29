@@ -8,8 +8,9 @@ Mobile calendar of cinemas in Brno for Android. It is mobile version of
 Dependencies
 ============
 
-* [ActionBarSherlock][01]
-* [Jackson][02]
+* [ActionBarSherlock](http://actionbarsherlock.com/)
+* [Android Support Library v4](http://developer.android.com/tools/extras/support-library.html)
+* [Jackson](http://jackson.codehaus.org/)
 
 
 Developed by
@@ -38,9 +39,3 @@ License
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
     
     This program comes with ABSOLUTELY NO WARRANTY!
-
-
-
-
- [01]: http://actionbarsherlock.com/
- [02]: http://jackson.codehaus.org/
