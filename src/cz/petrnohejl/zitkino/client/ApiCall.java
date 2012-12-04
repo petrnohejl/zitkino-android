@@ -99,9 +99,9 @@ public class ApiCall extends AsyncTask<Void, Void, Response>
 			//errorStream = new BufferedInputStream(connection.getErrorStream());
 			
 			// response info
-			//Log.d("ZITKINO", "apicall.getContentType: " + connection.getContentType());
-			//Log.d("ZITKINO", "apicall.getResponseCode: " + connection.getResponseCode());
-			//Log.d("ZITKINO", "apicall.getResponseMessage: " + connection.getResponseMessage());
+			//Logcat.d("ZITKINO", "apicall.getContentType: " + connection.getContentType());
+			//Logcat.d("ZITKINO", "apicall.getResponseCode: " + connection.getResponseCode());
+			//Logcat.d("ZITKINO", "apicall.getResponseMessage: " + connection.getResponseMessage());
 			
 			// parse response
 			if(isCancelled()) return null;
@@ -195,7 +195,7 @@ public class ApiCall extends AsyncTask<Void, Void, Response>
 	@Override
 	protected void onCancelled()
 	{
-		//Log.d("ZITKINO", "apicall.onCancelled");
+		//Logcat.d("ZITKINO", "apicall.onCancelled");
 	}
 	
 	

@@ -7,8 +7,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
-import android.util.Log;
 import cz.petrnohejl.zitkino.client.request.Request;
+import cz.petrnohejl.zitkino.utility.Logcat;
 
 
 public class RequestManager
@@ -89,10 +89,10 @@ public class RequestManager
 	{
 		for(ApiCall call : mQueue)
 		{
-			Log.d("ZITKINO", "request in queue: " + (call==null ? "null" : (call.getRequest().getClass().getSimpleName() + ": " + call.getStatus().toString())));
+			Logcat.d("ZITKINO", "request in queue: " + (call==null ? "null" : (call.getRequest().getClass().getSimpleName() + ": " + call.getStatus().toString())));
 		}
 		
-		if(mQueue.isEmpty()) Log.d("ZITKINO", "request in queue: empty");
+		if(mQueue.isEmpty()) Logcat.d("ZITKINO", "request in queue: empty");
 	}
 	
 	

@@ -31,6 +31,7 @@ import cz.petrnohejl.zitkino.client.response.MovieResponse;
 import cz.petrnohejl.zitkino.client.response.Response;
 import cz.petrnohejl.zitkino.task.TaskSherlockFragment;
 import cz.petrnohejl.zitkino.utility.DateConvertor;
+import cz.petrnohejl.zitkino.utility.Logcat;
 import cz.petrnohejl.zitkino.utility.ViewState;
 
 
@@ -219,9 +220,9 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 					// error
 					if(movieResponse.isError())
 					{
-//						Log.d("ZITKINO", "onApiCallRespond: movie error " + movieResponse.getErrorType() + ": " + movieResponse.getErrorMessage());
-//						Log.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
-//						Log.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
+						Logcat.d("ZITKINO", "onApiCallRespond: movie error " + movieResponse.getErrorType() + ": " + movieResponse.getErrorMessage());
+						Logcat.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
+						Logcat.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
 						
 						// hide progress
 						showList();
@@ -233,9 +234,9 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 					// response
 					else
 					{
-//						Log.d("ZITKINO", "onApiCallRespond: movie ok");
-//						Log.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
-//						Log.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
+						Logcat.d("ZITKINO", "onApiCallRespond: movie ok");
+						Logcat.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
+						Logcat.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
 						
 						// get movies data
 						Iterator<ArrayList<Movie>> iterator1 = movieResponse.getMovies().iterator();
@@ -289,9 +290,9 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 			{
 				if(call.getRequest().getClass().getSimpleName().equalsIgnoreCase("MovieRequest"))
 				{
-//					Log.d("ZITKINO", "onApiCallFail: movie " + parseFail);
-//					Log.d("ZITKINO", "onApiCallFail status code: " + status.getStatusCode());
-//					Log.d("ZITKINO", "onApiCallFail status message: " + status.getStatusMessage());		
+					Logcat.d("ZITKINO", "onApiCallFail: movie " + parseFail);
+					Logcat.d("ZITKINO", "onApiCallFail status code: " + status.getStatusCode());
+					Logcat.d("ZITKINO", "onApiCallFail status message: " + status.getStatusMessage());		
 					
 					// hide progress
 					showList();

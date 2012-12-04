@@ -7,6 +7,7 @@ import org.codehaus.jackson.JsonParseException;
 
 import cz.petrnohejl.zitkino.client.parser.MovieParser;
 import cz.petrnohejl.zitkino.client.response.Response;
+import cz.petrnohejl.zitkino.utility.Logcat;
 
 
 public class MovieRequest extends Request
@@ -34,6 +35,8 @@ public class MovieRequest extends Request
 		StringBuilder builder = new StringBuilder();
 		builder.append(BASE_URL);
 		builder.append(REQUEST_URL);
+		
+		Logcat.d("ZITKINO", builder.toString());
 		return builder.toString();
 	}
 
