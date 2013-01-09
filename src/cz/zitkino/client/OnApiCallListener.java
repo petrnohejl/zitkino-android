@@ -1,6 +1,6 @@
-package cz.petrnohejl.zitkino.client;
+package cz.zitkino.client;
 
-import cz.petrnohejl.zitkino.client.response.Response;
+import cz.zitkino.client.response.Response;
 
 
 public interface OnApiCallListener

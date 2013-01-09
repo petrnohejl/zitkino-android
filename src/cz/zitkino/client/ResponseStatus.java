@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.client;
+package cz.zitkino.client;
 
 
 public class ResponseStatus

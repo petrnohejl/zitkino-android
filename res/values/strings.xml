@@ -1,8 +1,9 @@
 <resources>
+    <!-- LANGUAGE INDEPENDENT -->
     <string name="app_name">Žít Kino Brno</string>
-    <string name="app_uri">market://details?id=cz.petrnohejl.zitkino</string>
+    <string name="app_uri">market://details?id=cz.zitkino</string>
     
-    <string name="global_button_ok">Ok</string>
+    <!-- LANGUAGE DEPENDENT -->
     <string name="global_offline_toast">Zařízení je offline. Připojte se prosím k internetu a zmáčkněte tlačítko obnovit.</string>
     <string name="global_server_fail_toast">Chyba serveru! Zkontrolujte připojení k internetu.</string>
     
@@ -17,9 +18,12 @@
     
     <string name="layout_listing_show">se vysílá</string>
     <string name="layout_listing_in_cinema">v kině</string>
+    <string name="layout_listing_share_title">Sdílet</string>
     <string name="layout_listing_share_subject">Žít Kino Brno</string>
-    <string name="layout_listing_share">Sdílet</string>
-    
-    <string name="layout_listing_about_title">O aplikaci</string>
-    <string name="layout_listing_about_text">Žít Kino Brno\n© 2012 Petr Nohejl, petrnohejl.cz\n\nAplikace vychází z webové služby zitkino.cz. API poskytnul Honza Javorek. Provozovatel neručí za případné škody vzniklé užíváním této aplikace.</string>
+    <string name="layout_listing_share_error">Vaše zařízení nemá žádný prostředek pro sdílení.</string>
+
+    <string name="dialog_about_title">O aplikaci</string>
+	<string name="dialog_about_text">Žít Kino Brno\n© 2012-2013 Petr Nohejl, petrnohejl.cz\nVšechna práva vyhrazena.\n\nAplikace vychází z webové služby zitkino.cz. API poskytnul Honza Javorek. Provozovatel neručí za případné škody vzniklé užíváním této aplikace.</string>
+	<string name="dialog_about_rate_button">Ohodnotit</string>
+	<string name="dialog_about_rate_error">Nelze spustit Google Play.</string>
 </resources>

@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.task;
+package cz.zitkino.task;
 
 import java.util.LinkedList;
 import java.util.List;

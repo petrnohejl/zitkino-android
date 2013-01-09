@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.client.parser;
+package cz.zitkino.client.parser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,9 +9,9 @@ import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonToken;
 
-import cz.petrnohejl.zitkino.client.entity.Movie;
-import cz.petrnohejl.zitkino.client.response.MovieResponse;
-import cz.petrnohejl.zitkino.utility.DateConvertor;
+import cz.zitkino.client.entity.Movie;
+import cz.zitkino.client.response.MovieResponse;
+import cz.zitkino.utility.DateConvertor;
 
 
 public class MovieParser

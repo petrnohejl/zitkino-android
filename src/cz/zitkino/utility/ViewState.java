@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.utility;
+package cz.zitkino.utility;
 
 public class ViewState
 {

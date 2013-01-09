@@ -1,8 +1,8 @@
-package cz.petrnohejl.zitkino.client.response;
+package cz.zitkino.client.response;
 
 import java.util.ArrayList;
 
-import cz.petrnohejl.zitkino.client.entity.Movie;
+import cz.zitkino.client.entity.Movie;
 
 
 public class MovieResponse extends Response

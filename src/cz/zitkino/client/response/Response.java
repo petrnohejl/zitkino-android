@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.client.response;
+package cz.zitkino.client.response;
 
 
 public class Response

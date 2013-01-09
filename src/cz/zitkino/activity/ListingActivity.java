@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.activity;
+package cz.zitkino.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,8 +16,8 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 
-import cz.petrnohejl.zitkino.R;
-import cz.petrnohejl.zitkino.fragment.ListingFragment;
+import cz.zitkino.R;
+import cz.zitkino.fragment.ListingFragment;
 
 public class ListingActivity extends SherlockFragmentActivity
 {
@@ -182,7 +182,7 @@ public class ListingActivity extends SherlockFragmentActivity
 	
 	private void showAbout()
 	{
-		final SpannableString str = new SpannableString(getText(R.string.layout_listing_about_text));
+		final SpannableString str = new SpannableString(getText(R.string.dialog_about_text));
 		Linkify.addLinks(str, Linkify.WEB_URLS);
 		
 		final TextView content = new TextView(this);
@@ -192,9 +192,9 @@ public class ListingActivity extends SherlockFragmentActivity
 
 		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 		alertDialog.setIcon(R.drawable.ic_launcher);
-		alertDialog.setTitle(R.string.layout_listing_about_title);
+		alertDialog.setTitle(R.string.dialog_about_title);
 		alertDialog.setView(content);
-		alertDialog.setPositiveButton(getString(R.string.global_button_ok), new DialogInterface.OnClickListener()
+		alertDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 		{
 			public void onClick(DialogInterface dialog, int which)
 			{

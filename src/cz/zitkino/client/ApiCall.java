@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.client;
+package cz.zitkino.client;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -13,8 +13,8 @@ import java.net.UnknownHostException;
 
 import android.os.AsyncTask;
 import android.util.Base64;
-import cz.petrnohejl.zitkino.client.request.Request;
-import cz.petrnohejl.zitkino.client.response.Response;
+import cz.zitkino.client.request.Request;
+import cz.zitkino.client.response.Response;
 
 
 public class ApiCall extends AsyncTask<Void, Void, Response>

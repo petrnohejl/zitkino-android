@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.fragment;
+package cz.zitkino.fragment;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,20 +20,20 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
-import cz.petrnohejl.zitkino.R;
-import cz.petrnohejl.zitkino.adapter.ListingAdapter;
-import cz.petrnohejl.zitkino.client.ApiCall;
-import cz.petrnohejl.zitkino.client.OnApiCallListener;
-import cz.petrnohejl.zitkino.client.RequestManager;
-import cz.petrnohejl.zitkino.client.ResponseStatus;
-import cz.petrnohejl.zitkino.client.entity.Movie;
-import cz.petrnohejl.zitkino.client.request.MovieRequest;
-import cz.petrnohejl.zitkino.client.response.MovieResponse;
-import cz.petrnohejl.zitkino.client.response.Response;
-import cz.petrnohejl.zitkino.task.TaskSherlockFragment;
-import cz.petrnohejl.zitkino.utility.DateConvertor;
-import cz.petrnohejl.zitkino.utility.Logcat;
-import cz.petrnohejl.zitkino.utility.ViewState;
+import cz.zitkino.R;
+import cz.zitkino.adapter.ListingAdapter;
+import cz.zitkino.client.ApiCall;
+import cz.zitkino.client.OnApiCallListener;
+import cz.zitkino.client.RequestManager;
+import cz.zitkino.client.ResponseStatus;
+import cz.zitkino.client.entity.Movie;
+import cz.zitkino.client.request.MovieRequest;
+import cz.zitkino.client.response.MovieResponse;
+import cz.zitkino.client.response.Response;
+import cz.zitkino.task.TaskSherlockFragment;
+import cz.zitkino.utility.DateConvertor;
+import cz.zitkino.utility.Logcat;
+import cz.zitkino.utility.ViewState;
 
 
 public class ListingFragment extends TaskSherlockFragment implements OnApiCallListener
@@ -486,7 +486,14 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 				shareIntent.setType("text/plain");
 				shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
 				shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, builder.toString());
-				startActivity(Intent.createChooser(shareIntent, getString(R.string.layout_listing_share)));
+				try
+				{
+					startActivity(Intent.createChooser(shareIntent, getString(R.string.layout_listing_share_title)));
+				}
+				catch(android.content.ActivityNotFoundException e)
+				{
+					Toast.makeText(getActivity(), R.string.layout_listing_share_error, Toast.LENGTH_LONG).show();
+				}
 				
 				return true;
 			}

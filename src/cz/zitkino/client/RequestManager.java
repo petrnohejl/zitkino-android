@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.client;
+package cz.zitkino.client;
 
 import java.util.LinkedList;
 import java.util.concurrent.Executor;
@@ -7,8 +7,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
-import cz.petrnohejl.zitkino.client.request.Request;
-import cz.petrnohejl.zitkino.utility.Logcat;
+import cz.zitkino.client.request.Request;
+import cz.zitkino.utility.Logcat;
 
 
 public class RequestManager

@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.task;
+package cz.zitkino.task;
 
 
 public interface TaskManager

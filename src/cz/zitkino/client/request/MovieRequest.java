@@ -1,13 +1,13 @@
-package cz.petrnohejl.zitkino.client.request;
+package cz.zitkino.client.request;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 import org.codehaus.jackson.JsonParseException;
 
-import cz.petrnohejl.zitkino.client.parser.MovieParser;
-import cz.petrnohejl.zitkino.client.response.Response;
-import cz.petrnohejl.zitkino.utility.Logcat;
+import cz.zitkino.client.parser.MovieParser;
+import cz.zitkino.client.response.Response;
+import cz.zitkino.utility.Logcat;
 
 
 public class MovieRequest extends Request

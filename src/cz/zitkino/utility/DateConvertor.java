@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.utility;
+package cz.zitkino.utility;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

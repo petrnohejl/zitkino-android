@@ -43,12 +43,12 @@ TESTS:
 
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="cz.petrnohejl.zitkino"
+	package="cz.zitkino"
 	android:versionCode="1"
 	android:versionName="1.0.0"
 	android:installLocation="auto">
 	
-	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16" />
+	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
 	
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

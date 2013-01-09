@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.client.request;
+package cz.zitkino.client.request;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,7 +7,7 @@ import org.codehaus.jackson.JsonParseException;
 
 import android.os.Bundle;
 
-import cz.petrnohejl.zitkino.client.response.Response;
+import cz.zitkino.client.response.Response;
 
 
 public abstract class Request

@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.client.entity;
+package cz.zitkino.client.entity;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino;
+package cz.zitkino;
 
 import android.app.Application;
 import android.content.Context;

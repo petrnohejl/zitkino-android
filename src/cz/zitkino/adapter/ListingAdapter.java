@@ -1,4 +1,4 @@
-package cz.petrnohejl.zitkino.adapter;
+package cz.zitkino.adapter;
 
 import java.util.ArrayList;
 
@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-import cz.petrnohejl.zitkino.R;
-import cz.petrnohejl.zitkino.client.entity.Movie;
-import cz.petrnohejl.zitkino.utility.StringConvertor;
+import cz.zitkino.R;
+import cz.zitkino.client.entity.Movie;
+import cz.zitkino.utility.StringConvertor;
 
 public class ListingAdapter extends BaseExpandableListAdapter 
 {
