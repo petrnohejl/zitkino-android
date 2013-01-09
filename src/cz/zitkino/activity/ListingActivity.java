@@ -1,13 +1,10 @@
 package cz.zitkino.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
-import android.widget.TextView;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -17,11 +14,12 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
 
 import cz.zitkino.R;
+import cz.zitkino.dialog.AboutDialogFragment;
 import cz.zitkino.fragment.ListingFragment;
 
 public class ListingActivity extends SherlockFragmentActivity
 {
-	private AlertDialog mAboutDialog;
+	private final String DIALOG_ABOUT = "about";
 	
 	
 	@Override
@@ -66,8 +64,6 @@ public class ListingActivity extends SherlockFragmentActivity
 	public void onPause()
 	{
 		super.onPause();
-		
-		if(mAboutDialog!=null) mAboutDialog.dismiss();
 	}
 	
 	
@@ -136,7 +132,7 @@ public class ListingActivity extends SherlockFragmentActivity
 				return true;
 				
 			case R.id.ab_button_help:
-				showAbout();
+				showAboutDialog();
 				return true;
 				
 			case R.id.ab_button_list_expand:
@@ -180,27 +176,15 @@ public class ListingActivity extends SherlockFragmentActivity
 	}
 	
 	
-	private void showAbout()
+	private void showAboutDialog()
 	{
-		final SpannableString str = new SpannableString(getText(R.string.dialog_about_text));
-		Linkify.addLinks(str, Linkify.WEB_URLS);
+		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+		Fragment prev = getSupportFragmentManager().findFragmentByTag(DIALOG_ABOUT);
+		if(prev != null) transaction.remove(prev);
+		transaction.addToBackStack(null);
 		
-		final TextView content = new TextView(this);
-		content.setText(str);
-		content.setMovementMethod(LinkMovementMethod.getInstance());
-		content.setPadding(40, 40, 40, 40);
-
-		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-		alertDialog.setIcon(R.drawable.ic_launcher);
-		alertDialog.setTitle(R.string.dialog_about_title);
-		alertDialog.setView(content);
-		alertDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-		{
-			public void onClick(DialogInterface dialog, int which)
-			{
-			}
-		});
-		mAboutDialog = alertDialog.create();
-		mAboutDialog.show();
+		// create and show the dialog
+		DialogFragment newFragment = AboutDialogFragment.newInstance();
+		newFragment.show(transaction, DIALOG_ABOUT);
 	}
 }

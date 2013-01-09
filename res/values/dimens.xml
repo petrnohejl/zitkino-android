@@ -21,4 +21,6 @@
 	<dimen name="layout_listing_group_text">17sp</dimen>
     <dimen name="layout_listing_group_padding">10dp</dimen>
     <dimen name="layout_listing_group_margin_left">32dp</dimen>
+    
+    <dimen name="dialog_about_margin">16dp</dimen>
 </resources>
