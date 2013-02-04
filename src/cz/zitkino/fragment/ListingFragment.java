@@ -217,13 +217,12 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 				if(response.getClass().getSimpleName().equalsIgnoreCase("MovieResponse"))
 				{
 					MovieResponse movieResponse = (MovieResponse) response;
-					
+
 					// error
 					if(movieResponse.isError())
 					{
-						Logcat.d("ZITKINO", "onApiCallRespond: movie error " + movieResponse.getErrorType() + ": " + movieResponse.getErrorMessage());
-						Logcat.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
-						Logcat.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
+						Logcat.d("Fragment.onApiCallRespond(MovieResponse): " + status.getStatusCode() + " " + status.getStatusMessage() + 
+								" / error / " + movieResponse.getErrorType() + " / " + movieResponse.getErrorMessage());
 						
 						// hide progress
 						showList();
@@ -235,9 +234,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 					// response
 					else
 					{
-						Logcat.d("ZITKINO", "onApiCallRespond: movie ok");
-						Logcat.d("ZITKINO", "onApiCallRespond status code: " + status.getStatusCode());
-						Logcat.d("ZITKINO", "onApiCallRespond status message: " + status.getStatusMessage());
+						Logcat.d("Fragment.onApiCallRespond(MovieResponse): " + status.getStatusCode() + " " + status.getStatusMessage());
 						
 						// get movies data
 						Iterator<ArrayList<Movie>> iterator1 = movieResponse.getMovies().iterator();
@@ -291,9 +288,8 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 			{
 				if(call.getRequest().getClass().getSimpleName().equalsIgnoreCase("MovieRequest"))
 				{
-					Logcat.d("ZITKINO", "onApiCallFail: movie " + parseFail);
-					Logcat.d("ZITKINO", "onApiCallFail status code: " + status.getStatusCode());
-					Logcat.d("ZITKINO", "onApiCallFail status message: " + status.getStatusMessage());		
+					Logcat.d("Fragment.onApiCallFail(MovieRequest): " + status.getStatusCode() + " " + status.getStatusMessage() +
+							" / " + (parseFail ? "parse fail" : "parse success"));
 					
 					// hide progress
 					showList();

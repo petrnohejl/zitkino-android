@@ -89,10 +89,10 @@ public class RequestManager
 	{
 		for(ApiCall call : mQueue)
 		{
-			Logcat.d("ZITKINO", "request in queue: " + (call==null ? "null" : (call.getRequest().getClass().getSimpleName() + ": " + call.getStatus().toString())));
+			Logcat.d("RequestManager.printQueue(): " + (call==null ? "null" : (call.getRequest().getClass().getSimpleName() + " / " + call.getStatus().toString())));
 		}
 		
-		if(mQueue.isEmpty()) Logcat.d("ZITKINO", "request in queue: empty");
+		if(mQueue.isEmpty()) Logcat.d("RequestManager.printQueue(): empty");
 	}
 	
 	

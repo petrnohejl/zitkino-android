@@ -79,7 +79,13 @@ public class ApiCall extends AsyncTask<Void, Void, Response>
 			if(requestData!=null) connection.setFixedLengthStreamingMode(requestData.length);
 			connection.setConnectTimeout(30000);
 			//connection.setReadTimeout(30000);
-			connection.setDoOutput(requestData!=null);
+			if(requestData!=null)
+			{
+				// this call automatically sets request method to POST on Android 4
+				// if you don't want your app to POST, you must not call setDoOutput
+				// http://webdiary.com/2011/12/14/ics-get-post/
+				connection.setDoOutput(true);
+			}
 			connection.setDoInput(true);
 			connection.setUseCaches(false);
 			connection.connect();
@@ -99,9 +105,11 @@ public class ApiCall extends AsyncTask<Void, Void, Response>
 			//errorStream = new BufferedInputStream(connection.getErrorStream());
 			
 			// response info
-			//Logcat.d("ZITKINO", "apicall.getContentType: " + connection.getContentType());
-			//Logcat.d("ZITKINO", "apicall.getResponseCode: " + connection.getResponseCode());
-			//Logcat.d("ZITKINO", "apicall.getResponseMessage: " + connection.getResponseMessage());
+			//Logcat.d("ApiCall.doInBackground().connection.getURL(): " + connection.getURL());
+			//Logcat.d("ApiCall.doInBackground().connection.getContentType(): " + connection.getContentType());
+			//Logcat.d("ApiCall.doInBackground().connection.getContentEncoding(): " + connection.getContentEncoding());
+			//Logcat.d("ApiCall.doInBackground().connection.getResponseCode(): " + connection.getResponseCode());
+			//Logcat.d("ApiCall.doInBackground().connection.getResponseMessage(): " + connection.getResponseMessage());
 			
 			// parse response
 			if(isCancelled()) return null;
@@ -195,7 +203,7 @@ public class ApiCall extends AsyncTask<Void, Void, Response>
 	@Override
 	protected void onCancelled()
 	{
-		//Logcat.d("ZITKINO", "apicall.onCancelled");
+		//Logcat.d("ApiCall.onCancelled()");
 	}
 	
 	
