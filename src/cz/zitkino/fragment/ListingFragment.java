@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -343,7 +342,7 @@ public class ListingFragment extends TaskSherlockFragment implements OnApiCallLi
 				
 				// movie request
 				MovieRequest request = new MovieRequest();
-				mRequestManager.executeRequest(request, this, AsyncTask.THREAD_POOL_EXECUTOR);
+				mRequestManager.executeRequest(request, this);
 			}
 		}
 		else
