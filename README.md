@@ -1,7 +1,7 @@
 Žít Kino Android
 ================
 
-Mobile calendar of cinemas in Brno for Android. It is mobile version of [web project zitkino.cz](https://github.com/honzajavorek/zitkino) by Honza Javorek.
+Mobile calendar of cinemas in Brno for Android. It is mobile version of [web project zitkino.cz](https://github.com/honzajavorek/zitkino.cz) by Honza Javorek.
 
 
 Dependencies
