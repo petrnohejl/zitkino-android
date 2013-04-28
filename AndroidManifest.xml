@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-TODO BEFORE UPDATE APP ON GOOGLE PLAY:
-======================================
+TODO BEFORE UPDATE APP ON GOOGLE PLAY
+=====================================
 -NEW VERSION:
 -set new version in manifest
 -edit text in changelog
@@ -15,8 +15,8 @@ TODO BEFORE UPDATE APP ON GOOGLE PLAY:
 -set server release API address
 
 
-TESTS:
-======
+TESTS
+=====
 -test app on all Android versions (handset, tablet)
 -monkey test (fast clicking, changing orientation)
 -test offline/empty/progress views
@@ -26,13 +26,13 @@ TESTS:
 -test Google Analytics/Flurry/Localytics tracking
 
 
-RELEASE INFO:
-=============
+RELEASE INFO
+============
 -code:1 - name:1.0.0 - date:23.08.2012
 
 
-TODO:
-=====
+TODO
+====
 -Google Analytics
 -->
 
